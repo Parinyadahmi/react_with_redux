@@ -1,9 +1,13 @@
 
 .profile{
   text-align: center;
-  padding: 50px 15px;
+  padding: 30px  15px 15px;
+}
+
+.about{
+  padding: 15px;
 }
 
 .skill{
-  padding: 50px 15px;
+  padding: 15px 15px;
 }

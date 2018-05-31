@@ -28,24 +28,25 @@ class Skills extends Component {
         return (
             <div className="skill">
 
-                SKILLS
+                MY SKILLS
 
                 <List
                     dataSource={user.skills}
                     renderItem={item => (
-                        <List.Item>
+                        <List.Item
+                            actions={[
+                                <Popconfirm title="Are you sure delete this skill?"
+                                            onConfirm={this.confirm}
+                                            onCancel={this.cancel}
+                                            okText="Yes" cancelText="No">
+                                    <Button type="primary" shape="circle" icon="close"/>
+                                </Popconfirm>]}>
+
                             <List.Item.Meta
                                 avatar={<Avatar>{item.name[0]}</Avatar>}
                                 title={<a href="https://ant.design">{item.name}</a>}
                                 description={<Rate allowHalf defaultValue={item.rating}/>}
                             />
-
-                            <Popconfirm title="Are you sure delete this skill?"
-                                        onConfirm={this.confirm}
-                                        onCancel={this.cancel}
-                                        okText="Yes" cancelText="No">
-                                <Button type="primary" shape="circle" icon="close"/>
-                            </Popconfirm>
 
 
                         </List.Item>
