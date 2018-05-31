@@ -1,30 +1,30 @@
 [
   {
     "name": "Javascript",
-    "percent": 80
+    "rating": 4
   },
   {
     "name": "HTML5",
-    "percent": 90
+    "rating": 4.5
   },
   {
     "name": "CSS3",
-    "percent": 90
+    "rating": 4.5
   },
   {
     "name": "jQuery",
-    "percent": 85
+    "rating": 4
   },
   {
     "name": "PHP",
-    "percent": 85
+    "rating": 4
   },
   {
     "name": "Python",
-    "percent": 70
+    "rating": 3.5
   },
   {
     "name": "MySQL",
-    "percent": 85
+    "rating": 4
   }
 ]
