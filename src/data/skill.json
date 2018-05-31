@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Javascript",
+    "percent": 80
+  },
+  {
+    "name": "HTML5",
+    "percent": 90
+  },
+  {
+    "name": "CSS3",
+    "percent": 90
+  },
+  {
+    "name": "jQuery",
+    "percent": 85
+  },
+  {
+    "name": "PHP",
+    "percent": 85
+  },
+  {
+    "name": "Python",
+    "percent": 70
+  },
+  {
+    "name": "MySQL",
+    "percent": 85
+  }
+]
