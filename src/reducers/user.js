@@ -3,7 +3,6 @@ import {
     UPDATE_PROFILE,
     GET_SKILL,
     ADD_SKILL,
-    UPDATE_SKILL,
     DELETE_SKILL
 } from '../actions/user'
 
@@ -29,8 +28,6 @@ export default function profile(state = initialState, action) {
                 ...state,
                 skills: [...state.skills, action.result]
             };
-        case UPDATE_SKILL:
-            return state;
         case DELETE_SKILL:
             return {
                 ...state,

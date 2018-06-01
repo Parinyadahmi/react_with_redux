@@ -5,7 +5,6 @@ export const UPDATE_PROFILE = 'UPDATE_PROFILE';
 
 export const GET_SKILL = 'GET_SKILL';
 export const ADD_SKILL = 'ADD_SKILL';
-export const UPDATE_SKILL = 'UPDATE_PROFILE';
 export const DELETE_SKILL = 'DELETE_SKILL';
 
 export function getProfile() {

@@ -9,6 +9,10 @@ import {Rate, Icon, Button, Popconfirm, notification} from 'antd';
 
 class Skills extends Component {
 
+    state = {
+        isEdit: false
+    };
+
     componentDidMount() {
         this.props.actions.getSkill();
     }
@@ -22,35 +26,56 @@ class Skills extends Component {
         this.props.actions.deleteSkill(data);
     }
 
-    add(data){
+    add(data) {
         this.props.actions.addSkill(data);
+    }
+
+    action(item) {
+        if (!this.state.isEdit) {
+            return <Rate allowHalf defaultValue={item.rating}/>;
+        } else {
+            return [
+                <Popconfirm key={item} title="Are you sure delete this skill?"
+                            onConfirm={() => this.delete(item)}
+                            okText="Yes" cancelText="No">
+                    <Button type="primary" shape="circle" icon="close"/>
+                </Popconfirm>]
+        }
+    }
+
+    setMode() {
+        this.setState({
+            isEdit: !this.state.isEdit
+        });
+    }
+
+    buttonMode() {
+        return <Button onClick={() => this.setMode()} type="primary" shape="circle"
+                       icon={this.state.isEdit ? 'save' : 'edit'}/>
     }
 
     render() {
         const {user} = this.props;
-
         return (
             <div className="skill">
 
                 MY SKILLS
 
+                {this.buttonMode()}
+
                 <List
                     dataSource={user.skills}
                     renderItem={item => (
                         <List.Item
-                            actions={[
-                                <Popconfirm title="Are you sure delete this skill?"
-                                            onConfirm={() => this.delete(item)}
-                                            okText="Yes" cancelText="No">
-                                    <Button type="primary" shape="circle" icon="close"/>
-                                </Popconfirm>]}>
+                        >
 
                             <List.Item.Meta
                                 avatar={<Avatar>{item.name[0]}</Avatar>}
                                 title={<a href="https://ant.design">{item.name}</a>}
-                                description={<Rate allowHalf defaultValue={item.rating}/>}
                             />
 
+
+                            <div>{this.action(item)}</div>
 
                         </List.Item>
                     )}
