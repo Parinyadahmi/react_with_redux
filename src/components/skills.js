@@ -4,7 +4,7 @@ import {bindActionCreators, compose} from 'redux'
 import * as userAction from '../actions/user'
 
 import {List, Avatar} from 'antd';
-import {Rate, Icon, Button, Popconfirm, notification} from 'antd';
+import {Rate, Icon, Button, Popconfirm, notification, Row, Col} from 'antd';
 
 
 class Skills extends Component {
@@ -59,30 +59,27 @@ class Skills extends Component {
         return (
             <div className="skill">
 
-                MY SKILLS
+                <Row className="header" type="flex" align="middle">
+                    <Col span={12}>MY SKILLS</Col>
 
-                {this.buttonMode()}
+                    <Col style={{textAlign: 'right'}} span={12}> {this.buttonMode()}</Col>
+                </Row>
+
 
                 <List
                     dataSource={user.skills}
                     renderItem={item => (
                         <List.Item
                         >
-
                             <List.Item.Meta
                                 avatar={<Avatar>{item.name[0]}</Avatar>}
                                 title={<a href="https://ant.design">{item.name}</a>}
                             />
-
-
                             <div>{this.action(item)}</div>
-
                         </List.Item>
                     )}
                 />
             </div>
-
-
         );
     }
 }
