@@ -10,7 +10,7 @@ export const DELETE_SKILL = 'DELETE_SKILL';
 
 export function getProfile() {
     return (dispatch) => {
-       return profile.getProfile().then(response => {
+        return profile.getProfile().then(response => {
             dispatch(setProfile(response));
         });
     }
@@ -23,6 +23,22 @@ export function getSkill() {
         });
     }
 }
+
+export function addSkill(data) {
+    return {
+        type: ADD_SKILL,
+        result: data
+    }
+}
+
+export function deleteSkill(data) {
+    return {
+        type: DELETE_SKILL,
+        result: data
+    }
+}
+
+
 
 export function setProfile(data) {
     return {

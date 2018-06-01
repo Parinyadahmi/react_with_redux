@@ -4,7 +4,7 @@ import {bindActionCreators, compose} from 'redux'
 import * as userAction from '../actions/user'
 
 import {List, Avatar} from 'antd';
-import {Rate, Icon, Button, Popconfirm, message} from 'antd';
+import {Rate, Icon, Button, Popconfirm, notification} from 'antd';
 
 
 class Skills extends Component {
@@ -13,13 +13,17 @@ class Skills extends Component {
         this.props.actions.getSkill();
     }
 
-    confirm(e) {
-        console.log(e);
-        message.success('Delete successfully!');
+    delete(data) {
+        notification.success({
+            message: 'My Skills',
+            description: data.name + ' has been deleted!',
+        });
+
+        this.props.actions.deleteSkill(data);
     }
 
-    cancel(e) {
-        console.log(e);
+    add(data){
+        this.props.actions.addSkill(data);
     }
 
     render() {
@@ -36,8 +40,7 @@ class Skills extends Component {
                         <List.Item
                             actions={[
                                 <Popconfirm title="Are you sure delete this skill?"
-                                            onConfirm={this.confirm}
-                                            onCancel={this.cancel}
+                                            onConfirm={() => this.delete(item)}
                                             okText="Yes" cancelText="No">
                                     <Button type="primary" shape="circle" icon="close"/>
                                 </Popconfirm>]}>

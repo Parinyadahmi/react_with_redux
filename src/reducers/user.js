@@ -25,11 +25,17 @@ export default function profile(state = initialState, action) {
                 skills: action.result
             });
         case ADD_SKILL:
-            return state;
+            return {
+                ...state,
+                skills: [...state.skills, action.result]
+            };
         case UPDATE_SKILL:
             return state;
         case DELETE_SKILL:
-            return state;
+            return {
+                ...state,
+                skills : state.skills.filter( (item, index) => item.name !== action.result.name)
+            };
         default:
             return state;
     }
