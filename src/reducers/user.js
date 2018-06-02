@@ -2,13 +2,14 @@ import {
     GET_PROFILE,
     UPDATE_PROFILE,
     GET_SKILL,
+    UPDATE_SKILL,
     ADD_SKILL,
     DELETE_SKILL
 } from '../actions/user'
 
 const initialState = {
     about: {},
-    skills : []
+    skills: []
 };
 
 export default function profile(state = initialState, action) {
@@ -28,10 +29,21 @@ export default function profile(state = initialState, action) {
                 ...state,
                 skills: [...state.skills, action.result]
             };
+        case UPDATE_SKILL:
+            const updatedItems = state.skills.map(item => {
+                if (item.name === action.result.name) {
+                    return {...item, ...action.payload}
+                }
+                return item
+            });
+
+            return Object.assign({}, state, {
+                skills: updatedItems
+            });
         case DELETE_SKILL:
             return {
                 ...state,
-                skills : state.skills.filter( (item, index) => item.name !== action.result.name)
+                skills: state.skills.filter((item, index) => item.name !== action.result.name)
             };
         default:
             return state;

@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux'
-import {bindActionCreators, compose} from 'redux'
-import * as userAction from '../actions/user'
+import {connect} from 'react-redux';
+import {bindActionCreators, compose} from 'redux';
+import * as userAction from '../actions/user';
 
-import {List, Avatar} from 'antd';
-import {Rate, Icon, Button, Popconfirm, notification, Row, Col} from 'antd';
+import {List, Avatar, Rate, Button, Popconfirm, notification, Row, Col} from 'antd';
 
 
 class Skills extends Component {
@@ -17,6 +16,10 @@ class Skills extends Component {
         this.props.actions.getSkill();
     }
 
+    add(data) {
+        this.props.actions.addSkill(data);
+    }
+
     delete(data) {
         notification.success({
             message: 'My Skills',
@@ -26,13 +29,19 @@ class Skills extends Component {
         this.props.actions.deleteSkill(data);
     }
 
-    add(data) {
-        this.props.actions.addSkill(data);
-    }
+    update = (data) => (value) => {
+        notification.success({
+            message: 'My Skills',
+            description: data.name + ' has been updated to ' + value + ' star.',
+        });
+
+        data.rating = value;
+        this.props.actions.updateSkill(data);
+    };
 
     action(item) {
         if (!this.state.isEdit) {
-            return <Rate allowHalf defaultValue={item.rating}/>;
+            return <Rate onChange={this.update(item)} allowHalf defaultValue={item.rating}/>;
         } else {
             return [
                 <Popconfirm key={item} title="Are you sure delete this skill?"
@@ -91,6 +100,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(userAction, dispatch)
 });
+
 
 export default compose(
     connect(
