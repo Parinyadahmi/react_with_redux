@@ -4,7 +4,7 @@ import {bindActionCreators, compose} from 'redux';
 import * as userAction from '../actions/user';
 
 import {
-    List, Avatar, Rate, Button, Popconfirm, notification, Row, Col, Input
+    List, Avatar, Rate, Button, Popconfirm, notification, Row, Col, Input, Alert
 } from 'antd';
 
 
@@ -16,10 +16,8 @@ class Skills extends Component {
     }
 
     state = {
-        form: {
-            name: null,
-            rating: null
-        },
+        form: {},
+        error: null,
         isEdit: false
     };
 
@@ -30,6 +28,11 @@ class Skills extends Component {
     add() {
         let data = this.state.form;
 
+        if (!data.name) {
+            this.setState({error: 'Please enter skill.'})
+            return;
+        }
+
         notification.success({
             message: 'My Skills',
             description: data.name + ' has been added!',
@@ -37,7 +40,11 @@ class Skills extends Component {
 
         this.props.actions.addSkill(data);
 
-        this.setState({isEdit : false})
+        this.setState({
+            form: {},
+            error: null,
+            isEdit: false
+        })
     }
 
     delete(data) {
@@ -105,23 +112,28 @@ class Skills extends Component {
 
     render() {
         const {user} = this.props;
-        const {isEdit} = this.state;
+        const {isEdit, error} = this.state;
         return (
             <div className="skill">
 
-                <div className="form">
-                    {isEdit && <Row className="header" type="flex" align="middle">
-                        <Col span={24}><Input onChange={this.inputChange}
-                                              placeholder="Skill"/></Col>
-                        <Col span={24}> <Rate onChange={this.ratingChange} allowHalf
-                                              defaultValue={5}/></Col>
+                {isEdit && <Row className="header" type="flex" align="middle">
 
-                        <Col span={24}>
-                            <Button style={{marginTop: 15}} onClick={() => this.add()} type="primary"
-                                    icon="save">Save</Button>
-                        </Col>
-                    </Row>}
-                </div>
+                    {error &&
+                    <Col span={24}>
+                        <Alert style={{marginBottom: 16}} type="error" message={error} banner/>
+                    </Col>}
+
+                    <Col span={24} style={{marginBottom: 16}}><Input onChange={this.inputChange} value={this.state.form.name}
+                                                                     placeholder="Skill"/></Col>
+                    <Col span={24} style={{marginBottom: 16}}> <Rate onChange={this.ratingChange} allowHalf value={this.state.form.rating}
+                                                                     defaultValue={0}/></Col>
+
+                    <Col span={24}>
+                        <Button onClick={() => this.add()} type="primary"
+                                icon="plus">Add Skill</Button>
+                    </Col>
+                </Row>}
+
 
                 <Row className="header" type="flex" align="middle">
                     <Col span={12}>MY SKILLS</Col>
