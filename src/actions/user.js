@@ -45,8 +45,6 @@ export function deleteSkill(data) {
     }
 }
 
-
-
 export function setProfile(data) {
     return {
         type: GET_PROFILE,

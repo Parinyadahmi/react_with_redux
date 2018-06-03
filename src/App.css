@@ -1,17 +1,13 @@
 
-.profile{
-  text-align: center;
-  padding: 30px  15px 15px;
+.app {
+   padding-top: 30px;
 }
 
-.about{
-  padding: 15px;
+.profile, .skill {
+    padding: 15px;
 }
 
+.header {
+    padding: 10px 0;
+}
 
-.header{
-  padding: 10px 0;
-}
-.skill{
-  padding: 15px 15px;
-}

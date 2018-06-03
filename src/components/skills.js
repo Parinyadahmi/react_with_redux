@@ -3,12 +3,23 @@ import {connect} from 'react-redux';
 import {bindActionCreators, compose} from 'redux';
 import * as userAction from '../actions/user';
 
-import {List, Avatar, Rate, Button, Popconfirm, notification, Row, Col} from 'antd';
+import {
+    List, Avatar, Rate, Button, Popconfirm, notification, Row, Col, Input
+} from 'antd';
 
 
 class Skills extends Component {
 
+    constructor(props) {
+        super(props);
+        this.ratingChange = this.ratingChange.bind(this);
+    }
+
     state = {
+        form: {
+            name: null,
+            rating: null
+        },
         isEdit: false
     };
 
@@ -16,8 +27,17 @@ class Skills extends Component {
         this.props.actions.getSkill();
     }
 
-    add(data) {
+    add() {
+        let data = this.state.form;
+
+        notification.success({
+            message: 'My Skills',
+            description: data.name + ' has been added!',
+        });
+
         this.props.actions.addSkill(data);
+
+        this.setState({isEdit : false})
     }
 
     delete(data) {
@@ -63,17 +83,51 @@ class Skills extends Component {
                        icon={this.state.isEdit ? 'save' : 'edit'}/>
     }
 
+
+    inputChange = (event) => {
+        this.setState({
+            form: {
+                ...this.state.form,
+                name: event.target.value
+            }
+        });
+    };
+
+    ratingChange(value) {
+        this.setState({
+            form: {
+                ...this.state.form,
+                rating: value
+            }
+        });
+    }
+
+
     render() {
         const {user} = this.props;
+        const {isEdit} = this.state;
         return (
             <div className="skill">
+
+                <div className="form">
+                    {isEdit && <Row className="header" type="flex" align="middle">
+                        <Col span={24}><Input onChange={this.inputChange}
+                                              placeholder="Skill"/></Col>
+                        <Col span={24}> <Rate onChange={this.ratingChange} allowHalf
+                                              defaultValue={5}/></Col>
+
+                        <Col span={24}>
+                            <Button style={{marginTop: 15}} onClick={() => this.add()} type="primary"
+                                    icon="save">Save</Button>
+                        </Col>
+                    </Row>}
+                </div>
 
                 <Row className="header" type="flex" align="middle">
                     <Col span={12}>MY SKILLS</Col>
 
                     <Col style={{textAlign: 'right'}} span={12}> {this.buttonMode()}</Col>
                 </Row>
-
 
                 <List
                     dataSource={user.skills}
