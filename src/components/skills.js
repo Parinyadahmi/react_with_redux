@@ -120,13 +120,16 @@ class Skills extends Component {
 
                     {error &&
                     <Col span={24}>
-                        <Alert style={{marginBottom: 16}} type="error" message={error} banner/>
+                        <Alert className="margin-bottom" type="error" message={error} banner/>
                     </Col>}
 
-                    <Col span={24} style={{marginBottom: 16}}><Input onChange={this.inputChange} value={this.state.form.name}
-                                                                     placeholder="Skill"/></Col>
-                    <Col span={24} style={{marginBottom: 16}}> <Rate onChange={this.ratingChange} allowHalf value={this.state.form.rating}
-                                                                     defaultValue={0}/></Col>
+                    <Col span={24} className="margin-bottom"><Input onChange={this.inputChange}
+                                                                    value={this.state.form.name}
+
+                                                                    placeholder="Skill"/></Col>
+                    <Col span={24} className="margin-bottom"> <Rate onChange={this.ratingChange} allowHalf
+                                                                    value={this.state.form.rating}
+                                                                    defaultValue={0}/></Col>
 
                     <Col span={24}>
                         <Button onClick={() => this.add()} type="primary"

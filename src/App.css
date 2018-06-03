@@ -3,6 +3,14 @@
    padding-top: 30px;
 }
 
+.profile{
+    text-align: center;
+}
+
+.title{
+    font-size: 18px;
+}
+
 .profile, .skill {
     padding: 0 15px;
     margin-bottom: 15px;
@@ -10,5 +18,9 @@
 
 .header {
     padding: 10px 0;
+}
+
+.margin-bottom{
+    margin-bottom: 16px;
 }
 
