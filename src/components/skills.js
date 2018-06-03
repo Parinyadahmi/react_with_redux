@@ -32,7 +32,7 @@ class Skills extends Component {
     update = (data) => (value) => {
         notification.success({
             message: 'My Skills',
-            description: data.name + ' has been updated to ' + value + ' star.',
+            description: data.name + ' has been updated to ' + value,
         });
 
         data.rating = value;
