@@ -15,17 +15,21 @@ class Profile extends Component {
         const {user} = this.props;
 
         return (
-            <div className="profile">
+            <div>
+                <div className="profile">
+                    <Avatar shape='circle' style={{height: 150, width: 150, borderRadius: '50%', marginBottom: 16}}
+                            src={ProfileImg}/>
 
-                <Avatar shape='circle' style={{height: 150, width: 150, borderRadius: '50%' , marginBottom: 16}}
-                        src={ProfileImg}/>
+                    <div className="about">
+                        <div className="title">{user.about.author}</div>
+                        <div>{user.about.position}</div>
+                        <div>{user.about.description}</div>
+                    </div>
+                </div>
 
-              <div className="about" >
-                <div className="title">{user.about.author}</div>
-                <div>{user.about.position}</div>
-                  <div>{user.about.description}</div>
-              </div>
-
+                <div className="json">
+                    {JSON.stringify(user.skills)}
+                </div>
             </div>
         );
     }

@@ -1,13 +1,13 @@
 
 .app {
-   padding-top: 30px;
+    padding-top: 30px;
 }
 
-.profile{
+.profile {
     text-align: center;
 }
 
-.title{
+.title {
     font-size: 18px;
 }
 
@@ -20,7 +20,14 @@
     padding: 10px 0;
 }
 
-.margin-bottom{
+.margin-bottom {
     margin-bottom: 16px;
 }
 
+.json {
+    background-color: #7d7d7d;
+    padding: 15px;
+    color:white;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
